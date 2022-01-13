@@ -1,0 +1,44 @@
+directive @goModel(model: String, models: [String!]) on OBJECT
+    | INPUT_OBJECT
+    | SCALAR
+    | ENUM
+    | INTERFACE
+    | UNION
+
+# PageInfo
+type PageInfo @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.PageInfo") {
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+    endCursor: String
+}
+
+input PagePaginationInput @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.PagePaginationInput") {
+    sortBy: [String]
+    limit: Int
+    page: Int
+}
+
+input CursorPaginationInput @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.CursorPaginationInput"){
+    first: Int
+    after: String
+    last: Int
+    before: String
+    sortBy: [String]
+}
+
+# Node
+interface Node {
+    id: ID!
+}
+
+# Edge
+interface Edge {
+    cursor: String!
+}
+
+# Connection
+interface Connection {
+    pageInfo: PageInfo!
+    totalCount: Int
+}

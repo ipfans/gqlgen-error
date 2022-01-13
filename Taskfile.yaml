@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  go: "go"
+
+tasks:
+  default:
+    cmds:
+      - "{{.go}} generate ./..."
+      - "{{.go}} run github.com/99designs/gqlgen --verbose"
+
+  up:
+    cmds:
+      - "{{.go}} get github.com/99designs/gqlgen@master"
+      - "{{.go}} install github.com/99designs/gqlgen@master"
+      - "{{.go}} mod tidy"
+
+  down:
+    cmds:
+      - "{{.go}} get github.com/99designs/gqlgen@v0.10.2"
+      - "{{.go}} install github.com/99designs/gqlgen@v0.10.2"
+      - "{{.go}} mod tidy"

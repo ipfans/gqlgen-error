@@ -1,0 +1,29 @@
+schema:
+  - "docs/schema/*.graphql"
+
+exec:
+  filename: business/usecase/gqlresolver/gqlgen/gqlgen.go
+  package: gqlgen
+
+model:
+  filename: business/entity/entity.go
+  package: entity
+
+resolver:
+  filename: business/usecase/gqlresolver/resolver.go
+  type: Resolver
+
+# struct_tag: json
+
+autobind:
+  - github.com/ipfans/gqlgen-error/business/entity
+
+models:
+  PageInfo:
+    model: gitlab.com/hookactions/gqlgen-relay/relay.PageInfo
+  Node:
+    model: gitlab.com/hookactions/gqlgen-relay/relay.Node
+  ID: # The GraphQL type ID is backed by
+    model:
+      - github.com/99designs/gqlgen/graphql.IntID # An go integer
+      - github.com/99designs/gqlgen/graphql.ID

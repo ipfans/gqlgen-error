@@ -1,0 +1,20 @@
+type CityEdge implements Edge @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.CityEdge") {
+    cursor: String!
+    node: City
+}
+
+type CityConnection implements Connection @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.CityConnection") {
+    edges: [CityEdge]
+    pageInfo: PageInfo!
+    totalCount: Int
+}
+
+type City implements Node @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.City") {
+    id: ID!
+    name: String
+}
+
+# ParamCityInput Searchable Param
+input ParamCityInput @goModel(model:"github.com/ipfans/gqlgen-error/business/entity.ParamCityInput") {
+    id: [Int]
+}
